@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+# 外网不用锁定版本
+package-lock.json
 
 # local env files
 .env.local
