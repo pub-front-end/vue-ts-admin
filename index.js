@@ -408,12 +408,12 @@ module.exports = {
     /**
      * 禁止使用 ~+ 等难以理解的类型转换，仅允许使用 !!
      */
-    'no-implicit-coercion': [
-      'error',
-      {
-        allow: ['!!']
-      }
-    ],
+    // 'no-implicit-coercion': [
+    //   'error',
+    //   {
+    //     allow: ['!!']
+    //   }
+    // ],
     /**
      * 禁止在全局作用域下定义变量或申明函数
      * @reason 模块化之后，不会出现这种在全局作用域下定义变量的情况

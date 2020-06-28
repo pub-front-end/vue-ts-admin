@@ -9,10 +9,7 @@ module.exports = {
     // 每次保存的时候将代码按eslint格式进行修复
     'source.fixAll.eslint': true
   },
-  'workbench.editor.enablePreview': false, // 打开文件不覆盖
-  'search.followSymlinks': false, // 关闭rg.exe进程
   'editor.minimap.enabled': false, // 关闭快速预览
-  'files.autoSave': 'afterDelay', // 打开自动保存
   'editor.lineNumbers': 'on', // 开启行数提示
   'editor.quickSuggestions': {
     // 开启自动显示建议
@@ -20,6 +17,12 @@ module.exports = {
     comments: true,
     strings: true
   },
+  'files.autoSave': 'afterDelay', // 打开自动保存
+  // 默认换行符LF
+  'files.eol': '\n',
+  'workbench.editor.enablePreview': false, // 打开文件不覆盖
+  'workbench.iconTheme': 'material-icon-theme',
+  'search.followSymlinks': false, // 关闭rg.exe进程
   'javascript.format.insertSpaceBeforeFunctionParenthesis': true, // 让函数(名)和后面的括号之间加个空格
   'vetur.format.defaultFormatter.html': 'js-beautify-html', // 格式化.vue中html
   'vetur.format.defaultFormatter.js': 'vscode-typescript', // 让vue中的js按编辑器自带的ts格式进行格式化
@@ -47,5 +50,9 @@ module.exports = {
     extensions: ['.js', '.vue', '.ts', '.tsx']
   },
   'eslint.format.enable': true,
-  'workbench.iconTheme': 'material-icon-theme'
+  'path-intellisense.extensionOnImport': true,
+  '[vue]': {
+    'editor.defaultFormatter': 'esbenp.prettier-vscode'
+  },
+  'window.zoomLevel': 1 // 调整窗口的缩放级别
 };
