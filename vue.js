@@ -1,28 +1,3 @@
-/**
- * AlloyTeam ESLint 规则
- * https://alloyteam.github.io/eslint-config-alloy/
- *
- * 贡献者：
- *     xcatliu <xcatliu@gmail.com>
- *     heyli <lcxfs1991@gmail.com>
- *     DiamondYuan <admin@diamondyuan.com>
- *     Dash Chen <noreply@github.com>
- *     Swan <noreply@github.com>
- *
- * 依赖版本：
- *     eslint ^6.7.1
- *     babel-eslint ^10.0.3
- *     eslint-plugin-react ^7.16.0
- *     vue-eslint-parser ^7.0.0
- *     eslint-plugin-vue ^6.0.0
- *     @typescript-eslint/parser ^2.9.0
- *     @typescript-eslint/eslint-plugin ^2.9.0
- *
- * 此文件是由脚本 scripts/build.ts 自动生成
- *
- * @category 此规则属于哪种分类
- * @reason 为什么要开启（关闭）此规则
- */
 module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -46,6 +21,55 @@ module.exports = {
   },
   plugins: ['vue'],
   rules: {
+    // html尖括号是否换行
+    'vue/html-closing-bracket-newline': [
+      'error',
+      {
+        singleline: 'never',
+        multiline: 'always'
+      }
+    ],
+    // vue组件书写顺序
+    'vue/order-in-components': [
+      'error',
+      {
+        order: [
+          'el',
+          'name',
+          'key',
+          'parent',
+          'functional',
+          ['delimiters', 'comments'],
+          ['components', 'directives', 'filters'],
+          'extends',
+          'mixins',
+          ['provide', 'inject'],
+          'ROUTER_GUARDS',
+          'layout',
+          'middleware',
+          'validate',
+          'scrollToTop',
+          'transition',
+          'loading',
+          'inheritAttrs',
+          'model',
+          ['props', 'propsData'],
+          'emits',
+          'setup',
+          'fetch',
+          'asyncData',
+          'data',
+          'head',
+          'computed',
+          'watch',
+          'watchQuery',
+          'LIFECYCLE_HOOKS',
+          'methods',
+          ['template', 'render'],
+          'renderError'
+        ]
+      }
+    ],
     /**
      * 限制自定义组件的属性风格
      */
