@@ -18,8 +18,13 @@ module.exports = {
         ecmaVersion: 2020,
         parser: '@typescript-eslint/parser' //ESLint的解析器，用于解析TypeScript，从而检查和规范TypeScript代码。
     },
+    overrides: [
+        { files: '.prettierrc.js' }
+    ],
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+
+        usePrettierrc: 0,
     }
 };
