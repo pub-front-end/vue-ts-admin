@@ -29,7 +29,8 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/issues/491
     'no-invalid-this': 'off',
     'no-magic-numbers': 'off',
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'error',
+    'no-require-imports': 'off',
     'react/sort-comp': 'off',
     /**
      * 重载的函数必须写在一起

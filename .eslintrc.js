@@ -26,5 +26,8 @@ module.exports = {
         'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
         usePrettierrc: 0,
+        '@typescript-eslint/no-require-imports': 'off',
+        'no-fallthrough': 'off',
+        'no-unused-vars': 'off'
     }
 };
