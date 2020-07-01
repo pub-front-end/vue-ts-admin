@@ -53,3 +53,18 @@ export const login = (req: Request, res: Response) => {
     messaege: '非法用户'
   });
 };
+export const getUserInfo = (req: Request, res: Response) => {
+  const { username } = req.body;
+  for (const user of userList) {
+    if (user.username === username) {
+      return res.json({
+        code: 20000,
+        data: {
+          name: 'admin',
+          id: 'S154ERDSFDSFTR1333',
+          auth: 'admin'
+        }
+      });
+    }
+  }
+};

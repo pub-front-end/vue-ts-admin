@@ -4,8 +4,22 @@ const path = require("path");
 function resolve (dir) {
   return path.join(__dirname, dir);
 }
-
+const mockServerPort = 9529 // 设置mockserver的端口
 module.exports = {
+  devServer: {
+    proxy: {
+      // change xxx-api/login => /mock-api/v1/login
+      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:${mockServerPort}/mock-api/v1`,
+        changeOrigin: true, // needed for virtual hosted sites
+        ws: true, // proxy websockets
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    },
+  },
   //简单配置
   configureWebpack (config) {
     return {

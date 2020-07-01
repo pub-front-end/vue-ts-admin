@@ -46,12 +46,12 @@ function downloadUrl(response: AxiosResponse) {
  * HTTP拦截器
  */
 class UAxios {
-  baseURL: string;
-  timeOut: string | number;
-  withCredentials: boolean;
-  crossDomain: boolean;
+  public baseURL: string;
+  public timeOut: string | number;
+  public withCredentials: boolean;
+  public crossDomain: boolean;
 
-  constructor() {
+  public constructor() {
     this.baseURL = getBaseUrl(process.env.NODE_ENV);
     this.timeOut = getLocalStore('timeout') || 5000;
     this.withCredentials = true; // 允许携带凭证
@@ -71,6 +71,7 @@ class UAxios {
     };
     // 配置拦截器，支持根据不同url配置不同的拦截器。
     this.setInterceptors(instance, options.url);
+    console.log('config', config);
     return instance(config); // 返回axios实例的执行结果
   }
 
@@ -80,7 +81,7 @@ class UAxios {
       config => {
         // todo 这里需要设置token信息
         // 每个请求都传递token
-        // 例： config.headers.Authorization = getLocalStore('token') || '';
+        config.headers.Authorization = getLocalStore('token') || '';
         return config;
       },
       err => {
@@ -120,11 +121,15 @@ class UAxios {
           if (err.response) {
             switch (err.response.status) {
               case 401:
-              // 返回 401 清除token ? 或者 跳转到401页面 或者 跳转到登录页面
-              // alert(err.response);
-              // router.replace({
-              //   path: '/login'
-              // });
+                // 返回 401 清除token ? 或者 跳转到401页面 或者 跳转到登录页面
+                // alert(err.response);
+                // router.replace({
+                //   path: '/login'
+                // });
+                Message({
+                  type: 'warning',
+                  message: '您没有操作权限'
+                });
               case 404:
               // 返回404 跳转到404页面 或者 跳转到登录页面
               // router.replace({
@@ -138,6 +143,7 @@ class UAxios {
     );
   }
 }
+
 let HttpServ = new UAxios();
 
 /**
