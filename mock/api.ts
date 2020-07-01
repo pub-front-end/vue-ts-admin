@@ -54,7 +54,7 @@ export const login = (req: Request, res: Response) => {
   });
 };
 export const getUserInfo = (req: Request, res: Response) => {
-  const { username } = req.body;
+  const { username } = req.query;
   for (const user of userList) {
     if (user.username === username) {
       return res.json({

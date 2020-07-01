@@ -59,8 +59,8 @@ export function setToken(token: string) {
  * @param name
  * @returns any
  */
-export function getToken(token: string) {
-  Cookies.get('token');
+export function getToken() {
+  return Cookies.get('token');
 }
 
 /**

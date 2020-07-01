@@ -15,5 +15,5 @@ export const getUserInfo = (data: any) =>
   HttpServ.request({
     url: '/users/getUserInfo',
     method: 'get',
-    data
+    params: data
   });

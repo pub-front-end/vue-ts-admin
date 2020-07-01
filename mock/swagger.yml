@@ -552,6 +552,56 @@ paths:
                         example: admin-token
         400:
           $ref: '#/components/responses/InvalidUser'
+  /users/getUserInfo:
+    get:
+      tags:
+        - users
+      summary: Logs user into the system
+      description: Use username and password to getUserInfo.
+      operationId: getUserInfo
+      parameters:
+        - name: username
+          in: body
+          required: true
+          description: The user name for getUserInfo.
+          schema:
+            $ref: '#/components/schemas/User/properties/username'
+      responses:
+        200:
+          description: OK
+          headers:
+            X-Rate-Limit:
+              schema:
+                type: integer
+                format: int32
+              description: calls per hour allowed by the user.
+            X-Expires-After:
+              schema:
+                type: string
+                format: date-time
+              description: date in UTC when token expires.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: admin-token
+                      id:
+                        type: string
+                        example: admin-token
+                      auth:
+                        type: string
+                        example: admin-token
+        400:
+          $ref: '#/components/responses/InvalidUser'
   /users/logout:
     post:
       tags:

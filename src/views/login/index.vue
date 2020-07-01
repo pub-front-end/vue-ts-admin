@@ -23,18 +23,19 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
-  import { login, getUserInfo } from '@/api/user';
+  import { getUserInfo } from '@/api/user';
+  import { PubStore } from '@/store/modules/public';
 
   @Component
   export default class Login extends Vue {
-    private user: Object = {
+    private user = {
       username: '',
       password: ''
     };
     private userLogin() {
-      login(this.user).then(res => {
+      PubStore.Login(this.user).then(res => {
         // 获取用户信息会失败，因为没有传递token
-        getUserInfo({ userName: 'admin' }).then(res => {
+        getUserInfo({ username: 'admin' }).then(res => {
           console.log(res.data);
         });
       });

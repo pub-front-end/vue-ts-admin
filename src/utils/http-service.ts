@@ -2,7 +2,7 @@
  * http请求/相应拦截器
  */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getLocalStore, setLocalStore } from './storage';
+import { getLocalStore, setLocalStore, getToken } from './storage';
 import { Message } from 'element-ui';
 import router from '@/router';
 
@@ -71,7 +71,6 @@ class UAxios {
     };
     // 配置拦截器，支持根据不同url配置不同的拦截器。
     this.setInterceptors(instance, options.url);
-    console.log('config', config);
     return instance(config); // 返回axios实例的执行结果
   }
 
@@ -81,7 +80,7 @@ class UAxios {
       config => {
         // todo 这里需要设置token信息
         // 每个请求都传递token
-        config.headers.Authorization = getLocalStore('token') || '';
+        config.headers.Authorization = getToken() || '';
         return config;
       },
       err => {
