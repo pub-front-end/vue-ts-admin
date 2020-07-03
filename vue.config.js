@@ -1,6 +1,8 @@
 
 const Webpack = require("webpack");
 const path = require("path");
+const Gzip = require("compression-webpack-plugin");
+
 function resolve (dir) {
   return path.join(__dirname, dir);
 }
@@ -22,19 +24,32 @@ module.exports = {
   },
   //简单配置
   configureWebpack (config) {
-    return {
-      resolve: {
-        alias: {
-          "@": resolve("src"),
+    if(process.env.NODE_ENV === 'production') {
+      return {
+        plugins: [
+          new Gzip({
+            test: /\.js$|\.html$|\.css$/,
+            threshold: 10240, // 超过10k进行压缩
+            deleteOriginalAssets: false, // 是否删除源文件
+          })
+        ]
+      }
+    }
+    else {
+      return {
+        resolve: {
+          alias: {
+            "@": resolve("src"),
+          },
         },
-      },
-      plugins: [
-        new Webpack.ProvidePlugin({
-          echarts: "echarts",
-          "window.echarts": "echarts",
-        }),
-      ],
-    };
+        plugins: [
+          new Webpack.ProvidePlugin({
+            echarts: "echarts",
+            "window.echarts": "echarts",
+          }),
+        ],
+      };
+    }
   },
   // chainWebpack链式配置规则
   // https://github.com/Yatoo2018/webpack-chain/tree/zh-cmn-Hans
