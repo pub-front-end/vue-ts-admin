@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
-    "mock": "cd mock && ts-node-dev mock-server.ts",
     "build": "vue-cli-service build",
+    "dll": "npm run dll-pro & npm run dll-dev",
+    "dll-pro": "webpack --env.production --progress --config ./webpack.dll.config.js",
+    "dll-dev": "webpack --env.development --progress --config ./webpack.dll.config.js",
+    "mock": "cd mock && ts-node-dev mock-server.ts",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -59,6 +62,7 @@
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
     "yamljs": "^0.3.0"
   },
   "lint-staged": {
